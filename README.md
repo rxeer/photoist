@@ -76,7 +76,7 @@ Additionally, it also has [path-prefix](https://www.gatsbyjs.org/docs/path-prefi
 - [gatsby-starter-prologue](https://github.com/anubhavsrivastava/gatsby-starter-prologue)
 - [gatsby-starter-phantom](https://github.com/anubhavsrivastava/gatsby-starter-phantom)
 - [gatsby-starter-paradigmshift](https://github.com/anubhavsrivastava/gatsby-starter-paradigmshift)
-- [gatsby-starter-overflow](https://github.com/anubhavsrivastava/gatsby-starter-overflow) 
+- [gatsby-starter-overflow](https://github.com/anubhavsrivastava/gatsby-starter-overflow)
 - [gatsby-starter-identity](https://github.com/anubhavsrivastava/gatsby-starter-identity)
 - [gatsby-starter-highlights](https://github.com/anubhavsrivastava/gatsby-starter-highlights)
 - [gatsby-starter-fractal](https://github.com/anubhavsrivastava/gatsby-starter-fractal)

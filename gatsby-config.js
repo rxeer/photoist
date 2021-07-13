@@ -8,7 +8,15 @@ module.exports = {
   plugins: [
     'gatsby-plugin-react-helmet',
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: 'gatsby-plugin-typescript',
+      options: {
+        isTSX: true,
+        jsxPragma: 'jsx',
+        allExtensions: true,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-manifest',
       options: {
         name: config.manifestName,
         short_name: config.manifestShortName,
@@ -16,7 +24,24 @@ module.exports = {
         background_color: config.manifestBackgroundColor,
         theme_color: config.manifestThemeColor,
         display: config.manifestDisplay,
-        icon: config.manifestIcon, // This path is relative to the root of the site.
+        icon: config.manifestIcon,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-alias-imports',
+      options: {
+        alias: {
+          '@src': 'src',
+          '@pages': 'src/pages',
+          '@assets': 'src/assets',
+          '@components': 'src/components',
+        },
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-google-gtag',
+      options: {
+        trackingIds: [process.env.GATSBY_G_TAG],
       },
     },
     'gatsby-plugin-sass',

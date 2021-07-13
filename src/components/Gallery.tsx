@@ -5,7 +5,7 @@ export default function Gallery({ images }) {
   return (
     <SRLWrapper>
       <div className="photo-list">
-        {images.map((image) => {
+        {images.map(image => {
           return (
             <article className="thumb" key={image.src.default}>
               <span

@@ -1,8 +1,60 @@
-import React from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
+import firebase from 'gatsby-plugin-firebase';
+import { nanoid } from 'nanoid';
 
 import config from '../../config';
 
-export default function Footer({ onClose, isVisible }) {
+interface IProps {
+  isVisible: boolean;
+  onClose: () => void;
+}
+
+const Footer: React.FC<IProps> = ({ onClose, isVisible }) => {
+  const [values, setValues] = useState({});
+  const [isSubmitted, setSubmitted] = useState(false);
+
+  const getCurrentSubmissions = useCallback(async () => {
+    firebase
+      .database()
+      .ref('/submissions')
+      .get()
+      .then(snapshot => {
+        setValues(snapshot.val());
+      });
+  }, [setValues]);
+
+  const handleFormSubmit = useCallback(
+    async data => {
+      if (data) {
+        const uniqueId = nanoid();
+
+        const submissionsData = {
+          ...values,
+          [uniqueId]: data
+        };
+
+        try {
+          await firebase
+            .database()
+            .ref('/submissions')
+            .set(submissionsData);
+          setSubmitted(true);
+        } catch (e) {
+          console.error(e);
+        }
+      }
+    },
+    [setSubmitted, values]
+  );
+
+  useEffect(() => {
+    if (!firebase) {
+      return;
+    }
+    getCurrentSubmissions();
+  }, [getCurrentSubmissions]);
+
+
   return (
     <footer id="footer" className={`panel ${isVisible ? 'active' : ''}`}>
       <div className="inner split">
@@ -50,7 +102,7 @@ export default function Footer({ onClose, isVisible }) {
                   <textarea
                     name="message"
                     id="message"
-                    rows="4"
+                    rows={4}
                     placeholder="Message"
                   />
                 </div>
@@ -77,3 +129,5 @@ export default function Footer({ onClose, isVisible }) {
     </footer>
   );
 }
+
+export default Footer;

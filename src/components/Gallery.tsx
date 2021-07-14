@@ -7,9 +7,13 @@ export default function Gallery({ images }) {
       <div className="photo-list">
         {images.map(image => {
           return (
-            <article className="thumb" key={image.src.default}>
+            <article className="thumb"
+              data-sal="fade"
+              data-sal-delay="600"
+              data-sal-easing="ease"
+              key={ image.src.default }>
               <span
-                style={{
+                style={ {
                   cursor: 'pointer',
                   outline: '0px',
                 }}

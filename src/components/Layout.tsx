@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Helmet from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
 import classNames from 'classnames';
+import disableScroll from 'disable-scroll';
 
 import Header from './Header';
 import Footer from './Footer';
@@ -57,7 +58,7 @@ const Layout = ({ children }) => {
               'is-preload': isPreloaded,
             })}
           >
-            <div id="wrapper">
+            <div id="wrapper" onClick={() => disableScroll.off()}>
               <Header onAction={linkHandler} />
               <div
                 id="main"

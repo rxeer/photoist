@@ -1,98 +1,23 @@
-# gatsby-starter-multiverse
+# Photoist
 
-Gatsby.js V2 starter template based on Multiverse by HTML5 UP
+Personal photo album
 
-For an overview of the project structure please refer to the [Gatsby documentation - Building with Components](https://www.gatsbyjs.org/docs/building-with-components/).
+![Screenshot](./src/assets/images/screenshot-1.png)
+![Screenshot](./src/assets/images/screenshot-2.png)
 
-![Screenshot](./src/assets/img/multiverse.jpg)
+Check online preview [here](https://photoist.netlify.app/)
 
-Check online preview [here](https://anubhavsrivastava.github.io/gatsby-starter-multiverse/)
+To start the project you should:
 
-## Screenshot
+1. install node >=14.0.0
+2. add config to `.env` with content
+3. run `yarn`
+4. run `yarn start`
 
-![Screenshot](./src/assets/img/demo.png)
+## Project Commands
 
-## Install
-
-Make sure that you have the Gatsby CLI program installed:
-
-```sh
-npm install --global gatsby-cli
-```
-
-And run from your CLI:
-
-```sh
-gatsby new <site-name> https://github.com/anubhavsrivastava/gatsby-starter-multiverse
-```
-
-Then you can run it by:
-
-```sh
-cd gatsby-example-site
-npm install
-gatsby develop
-```
-
-### Personalization
-
-Edit `config.js` to put up your details
-
-```javascript
-module.exports = {
-  siteTitle: 'Gatsby Starter multiverse', // <title>
-  ...
-  heading: 'Anubhav',
-  subHeading: 'Web Developer',
-  // social
-  socialLinks: [
-    {
-      icon: 'fa-github',
-      name: 'Github',
-      url: 'https://github.com/anubhavsrivastava',
-    }
-    ...
-  ],
-};
-
-```
-
-### Deploying using Github page
-
-`package.json` has a default script that uses `gh-pages` module to publish on Github pages. Simply running `npm run deploy` would publish the site on github pages.
-
-Additionally, it also has [path-prefix](https://www.gatsbyjs.org/docs/path-prefix/) value set for gatsby config in `config.js`. Change `pathPrefix` to relevant path if your gatsby site is hosted on subpath of a domain, `https://theanubhav.com/somePath/`. If you are hosting it as root site, i.e, `https://theanubhav.com/` , remove the pathPrefix configuration.
-
-### Checkout other similar starters
-
-- [gatsby-starter-casual](https://github.com/anubhavsrivastava/gatsby-starter-casual)
-- [gatsby-starter-grayscale](https://github.com/anubhavsrivastava/gatsby-starter-grayscale)
-- [gatsby-starter-resume](https://github.com/anubhavsrivastava/gatsby-starter-resume)
-- [gatsby-starter-spectral](https://github.com/anubhavsrivastava/gatsby-starter-spectral)
-- [gatsby-starter-newage](https://github.com/anubhavsrivastava/gatsby-starter-newage)
-- [gatsby-starter-stylish](https://github.com/anubhavsrivastava/gatsby-starter-stylish)
-- [gatsby-starter-solidstate](https://github.com/anubhavsrivastava/gatsby-starter-solidstate)
-- [gatsby-starter-readonly](https://github.com/anubhavsrivastava/gatsby-starter-readonly)
-- [gatsby-starter-prologue](https://github.com/anubhavsrivastava/gatsby-starter-prologue)
-- [gatsby-starter-phantom](https://github.com/anubhavsrivastava/gatsby-starter-phantom)
-- [gatsby-starter-paradigmshift](https://github.com/anubhavsrivastava/gatsby-starter-paradigmshift)
-- [gatsby-starter-overflow](https://github.com/anubhavsrivastava/gatsby-starter-overflow)
-- [gatsby-starter-identity](https://github.com/anubhavsrivastava/gatsby-starter-identity)
-- [gatsby-starter-highlights](https://github.com/anubhavsrivastava/gatsby-starter-highlights)
-- [gatsby-starter-fractal](https://github.com/anubhavsrivastava/gatsby-starter-fractal)
-- [gatsby-starter-eventually](https://github.com/anubhavsrivastava/gatsby-starter-eventually)
-- [gatsby-starter-directive](https://github.com/anubhavsrivastava/gatsby-starter-directive)
-- [gatsby-starter-creative](https://github.com/anubhavsrivastava/gatsby-starter-creative)
-- [gatsby-starter-aerial](https://github.com/anubhavsrivastava/gatsby-starter-aerial)
-
-### Contribution
-
-Suggestions and PRs are welcome!
-
-Please create issue or open PR request for contribution.
-
-### License
-
-[![Open Source Love](https://badges.frapsoft.com/os/mit/mit.svg?v=102)](LICENSE)
-
-refer `LICENSE` file in this repository.
+1. run `start` - start gatsby in dev mode
+2. run `serve` - gatsby serve
+3. run `clean` - clean project cache and gatsby files
+4. run `build` - build production ready gatsby app
+5. run `format` - run prettier for {js,jsx,,ts,tsx,json,md,scss} files

@@ -1,97 +1,86 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useEffect } from 'react';
 import Helmet from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
+import classNames from 'classnames';
 
 import Header from './Header';
 import Footer from './Footer';
 
-class Layout extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isPreloaded: true,
-      footerVisible: false,
-    };
+const Layout = ({ children }) => {
+  const [isPreloaded, setIsPreloaded] = useState(true);
+  const [footerVisible, toggleFooterVisible] = useState(false);
 
-    this.linkHandler = this.linkHandler.bind(this);
-    this.toggleFooter = this.toggleFooter.bind(this);
-  }
-
-  linkHandler(e, name) {
-    e.preventDefault();
+  const linkHandler = (event, name: string) => {
+    event.preventDefault();
     if (name === 'about') {
-      this.toggleFooter();
+      toggleFooterVisible(true);
     }
-  }
+  };
 
-  toggleFooter() {
-    this.setState({ footerVisible: !this.state.footerVisible });
-  }
-
-  componentDidMount() {
-    this.timeoutId = setTimeout(() => {
-      this.setState({ isPreloaded: false });
+  useEffect((): VoidFunction => {
+    const timeoutId = setTimeout(() => {
+      setIsPreloaded(false);
     }, 100);
-  }
 
-  componentWillUnmount() {
-    if (this.timeoutId) {
-      clearTimeout(this.timeoutId);
-    }
-  }
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
+  }, []);
 
-  render() {
-    const { children } = this.props;
-    const { isPreloaded, footerVisible } = this.state;
-    return (
-      <StaticQuery
-        query={graphql`
-          query SiteTitleQuery {
-            site {
-              siteMetadata {
-                title
-              }
+  return (
+    <StaticQuery
+      query={graphql`
+        query SiteTitleQuery {
+          site {
+            siteMetadata {
+              title
             }
           }
-        `}
-        render={data => (
-          <>
-            <Helmet
-              title={data.site.siteMetadata.title}
-              meta={[
-                { name: 'description', content: 'Multiverse' },
-                { name: 'keywords', content: 'site, web' },
-              ]}
-            >
-              <html lang="en" />
-            </Helmet>
-            <div
-              className={`main-body ${footerVisible ? 'content-active' : ''}
-               ${isPreloaded ? 'is-preload' : ''}`}
-            >
-              <div id="wrapper">
-                <Header onAction={this.linkHandler} />
-                <div
-                  id="main"
-                  onClick={e => {
-                    if (footerVisible) {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      this.toggleFooter();
-                    }
-                  }}
-                >
-                  {children}
-                </div>
-                <Footer isVisible={footerVisible} onClose={this.toggleFooter} />
+        }
+      `}
+      render={data => (
+        <>
+          <Helmet
+            title={data.site.siteMetadata.title}
+            meta={[
+              { name: 'description', content: 'Photoist Album' },
+              { name: 'keywords', content: 'site, web, photoist' },
+            ]}
+          >
+            <html lang="en" />
+          </Helmet>
+          <div
+            className={classNames('main-body', {
+              'content-active': footerVisible,
+              'is-preload': isPreloaded,
+            })}
+          >
+            <div id="wrapper">
+              <Header onAction={linkHandler} />
+              <div
+                id="main"
+                onClick={event => {
+                  if (footerVisible) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    toggleFooterVisible(false);
+                  }
+                }}
+              >
+                {children}
               </div>
+              <Footer
+                isVisible={footerVisible}
+                onClose={(): void => toggleFooterVisible(false)}
+              />
             </div>
-          </>
-        )}
-      />
-    );
-  }
-}
+          </div>
+        </>
+      )}
+    />
+  );
+};
 
 export default Layout;

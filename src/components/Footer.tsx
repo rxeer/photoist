@@ -1,7 +1,10 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import firebase from 'gatsby-plugin-firebase';
 import { nanoid } from 'nanoid';
+import classNames from 'classnames';
+import disableScroll from 'disable-scroll';
 
+import SubmitForm from './SubmitForm';
 import config from '../../config';
 
 interface IProps {
@@ -24,20 +27,17 @@ const Footer: React.FC<IProps> = ({ onClose, isVisible }) => {
   }, [setValues]);
 
   const handleFormSubmit = useCallback(
-    async data => {
+    async (data: { name: string; email: string; message: string }) => {
       if (data) {
         const uniqueId = nanoid();
 
         const submissionsData = {
           ...values,
-          [uniqueId]: data
+          [uniqueId]: data,
         };
 
         try {
-          await firebase
-            .database()
-            .ref('/submissions')
-            .set(submissionsData);
+          await firebase.database().ref('/submissions').set(submissionsData);
           setSubmitted(true);
         } catch (e) {
           console.error(e);
@@ -54,16 +54,28 @@ const Footer: React.FC<IProps> = ({ onClose, isVisible }) => {
     getCurrentSubmissions();
   }, [getCurrentSubmissions]);
 
+  const handleClose = event => {
+    event.preventDefault();
+    onClose();
+    disableScroll.off();
+  };
 
   return (
-    <footer id="footer" className={`panel ${isVisible ? 'active' : ''}`}>
+    <footer
+      id="footer"
+      className={classNames({
+        panel: true,
+        active: isVisible,
+      })}
+    >
       <div className="inner split">
         <div>
           <section>
             <h2>More about me</h2>
             <p>
-              Part time Open photo maker. Full time Web Developer. Loves to
-              travel and shit.
+              Full time Web Developer. <br />
+              Part of time photo and video maker. <br />
+              Love to travel, create electronic music and shit.
             </p>
           </section>
           <section>
@@ -85,49 +97,13 @@ const Footer: React.FC<IProps> = ({ onClose, isVisible }) => {
         <div>
           <section>
             <h2>Get in touch</h2>
-            <form method="post" action="#">
-              <div className="fields">
-                <div className="field half">
-                  <input type="text" name="name" id="name" placeholder="Name" />
-                </div>
-                <div className="field half">
-                  <input
-                    type="text"
-                    name="email"
-                    id="email"
-                    placeholder="Email"
-                  />
-                </div>
-                <div className="field">
-                  <textarea
-                    name="message"
-                    id="message"
-                    rows={4}
-                    placeholder="Message"
-                  />
-                </div>
-              </div>
-              <ul className="actions">
-                <li>
-                  <input type="submit" value="Send" className="primary" />
-                </li>
-                <li>
-                  <input type="reset" value="Reset" />
-                </li>
-              </ul>
-            </form>
+            <SubmitForm isSubmitted={isSubmitted} onSubmit={handleFormSubmit} />
           </section>
         </div>
       </div>
-      <div
-        className="closer"
-        onClick={e => {
-          e.preventDefault();
-          onClose();
-        }}
-      />
+      <div className="closer" onClick={handleClose} />
     </footer>
   );
-}
+};
 
 export default Footer;

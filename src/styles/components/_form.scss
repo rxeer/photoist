@@ -31,6 +31,11 @@ form {
         width: calc(50% - #{$gutter * 0.5});
       }
 
+      .field-error {
+        font-size: 12px;
+        color: _palette(accent1);
+      }
+
       &.third {
         width: calc(#{100% / 3} - #{$gutter * (1 / 3)});
       }

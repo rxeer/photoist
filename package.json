@@ -1,16 +1,18 @@
 {
-  "name": "gatsby-starter-multiverse",
-  "version": "0.0.1",
-  "description": "Gatsby.js V2 starter template based on Multiverse by HTML5 UP",
+  "name": "photoist",
+  "version": "1.0.0",
+  "description": "Personal photo album",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/anubhavsrivastava/gatsby-starter-multiverse.git"
+    "url": "git+https://github.com/rxeer/photoist.git"
   },
   "author": {
-    "name": "Anubhav Srivastava",
-    "email": "anubhav.srivastava00@gmail.com"
+    "name": "Andrew Kirichenko",
+    "email": "app.checkapp@gmail.com"
   },
   "dependencies": {
+    "classnames": "^2.3.1",
+    "disable-scroll": "^0.6.0",
     "dotenv": "^10.0.0",
     "firebase": "^8.7.1",
     "gatsby": "^3.9.1",
@@ -28,31 +30,28 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
+    "react-hook-form": "^7.11.1",
     "simple-react-lightbox": "^3.6.6",
     "smoothscroll-polyfill": "^0.4.4"
   },
   "scripts": {
     "start": "gatsby develop",
     "build": "npm run clean && gatsby build",
-    "deploy": "npm run clean && gatsby build --prefix-paths && gh-pages -d public",
     "serve": "gatsby serve",
     "clean": "rimraf .cache public",
-    "format": "prettier --write \"**/*.{js,jsx,,ts,tsx,json,md,scss}\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "format": "prettier --write \"**/*.{js,jsx,,ts,tsx,json,md,scss}\""
   },
   "devDependencies": {
-    "gh-pages": "^2.0.1",
     "prettier": "^2.3.2",
     "rimraf": "^3.0.2"
   },
   "keywords": [
     "gatsby",
-    "gatsby-starter",
-    "gatsby-starter-multiverse"
+    "gatsby-starter"
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/anubhavsrivastava/gatsby-starter-multiverse/issues"
+    "url": "https://github.com/rxeer/photoist/issues"
   },
-  "homepage": "https://github.com/anubhavsrivastava/gatsby-starter-multiverse#readme"
+  "homepage": "https://github.com/rxeer/photoist"
 }

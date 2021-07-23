@@ -1,5 +1,4 @@
-
-require('dotenv').config({ path: './.env.*' });
+require('dotenv').config({ path: './.env' });
 const config = require('./config');
 
 const firebaseConfig = {
@@ -10,7 +9,7 @@ const firebaseConfig = {
   databaseURL: process.env.GATSBY_FIREBASE_DATABASE_URL,
   measurementId: process.env.GATSBY_FIREBASE_MEASURE_ID,
   storageBucket: process.env.GATSBY_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.GATSBY_FIREBASE_SENDER_ID
+  messagingSenderId: process.env.GATSBY_FIREBASE_SENDER_ID,
 };
 
 module.exports = {
@@ -62,9 +61,9 @@ module.exports = {
       resolve: 'gatsby-plugin-firebase',
       options: {
         credentials: {
-          ...firebaseConfig
-        }
-      }
+          ...firebaseConfig,
+        },
+      },
     },
     'gatsby-plugin-sass',
     'gatsby-plugin-offline',

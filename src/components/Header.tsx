@@ -1,9 +1,19 @@
 import React from 'react';
 import { Link } from 'gatsby';
+import disableScroll from 'disable-scroll';
 
 import config from '../../config';
 
-export default function Header({ onAction = () => {} }) {
+interface IProps {
+  onAction: (event: any, actionType: string) => void;
+}
+
+const Header: React.FC<IProps> = ({ onAction = () => {} }) => {
+  const handleActionHandler = event => {
+    onAction(event, 'about');
+    disableScroll.on();
+  };
+
   return (
     <header id="header">
       <h1>
@@ -16,7 +26,7 @@ export default function Header({ onAction = () => {} }) {
           <li>
             <a
               href="#footer"
-              onClick={e => onAction(e, 'about')}
+              onClick={handleActionHandler}
               className="icon fa-info-circle"
             >
               About
@@ -26,4 +36,6 @@ export default function Header({ onAction = () => {} }) {
       </nav>
     </header>
   );
-}
+};
+
+export default Header;
